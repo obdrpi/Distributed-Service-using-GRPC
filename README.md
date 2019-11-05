@@ -1,1 +1,59 @@
 # Distributed-Service-using-GRPC
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@obdrpi 
+Learn Git and GitHub without any code!
+Using the Hello World guide, you’ll start a branch, write comments, and open a pull request.
+
+
+1
+00obdrpi/Distributed-Service-using-GRPC
+ Code Issues 0 Pull requests 0 Projects 0 Wiki Security Insights Settings
+Distributed-Service-using-GRPC/README
+@obdrpi obdrpi Add files via upload
+88e3da4 43 seconds ago
+40 lines (28 sloc)  2.68 KB
+ 
+Individual Project: I have developed 'store.cc', 'cient.cc', 'store_sync.cc' and 'Threadpool.h' files which can be found in the folder. Help was taken from the online tutorials for GRPC understanding!
+
+In this project, we have implemented a simple distributed service in GRPC C++. It can be thought of as an Amazon store where there is a Server which receives requests from different users, querying the prices offered by the different registered vendors. Once the store has responses from all the vendors, it is supposed to collate the (bid, vendor_id) from the vendors and send it back to the requesting client. 
+
+Technically, we need to establish asynchronous GRPC communication between -
+    - The store and user client. 
+    - The store and the vendors.  
+
+The synchronous and asynchronous APIs have been used for communication between client and server, server and the vendors. 
+
+### Given to You
+  1. run_tests.cc - This will simulate real world users sending concurrent product queries. This will be released soon to you.
+  2. client.cc - This will be providing ability to connect to the store as a user.
+  3. vendor.cc - This wil act as the server providing bids for different products. Multiple instances of it will be run listening on different ip address and port.
+  4. `Two .proto files`  
+    - store.proto - Comm. protocol between user(client) and store(server)  
+    - vendor.proto -Comm. protocol between store(client) and vendor(server)  
+
+### How to run the test setup
+  - Goto test directory and run `make` command
+  - Two binaries would be created `run_tests` and `run_vendors`
+  - First run the command `./run_vendors ../src/vendor_addresses.txt &` to start a process which will run multiple servers on different threads listening to (ip_address:ports) from the file given as command line argument.
+  - Then start up your store which will read the same address file to know vendors' listening addresses. Also, your store should start listening on a port(for clients to connect to) given as command line argument.
+  - Then finally run the command `./run_tests $IP_and_port_on_which_store_is_listening $max_num_concurrent_client_requests` to start a process which will simulate real world clients sending requests at the same time.
+  - This process read the queries from the file `product_query_list.txt`
+  - It will send some queries and print back the results, which you can use to verify your whole system's flow.
+
+
+To run the server, type-
+./store 0.0.0.0:50049 10
+Please make sure that the .grpc and .pb files are present for both store as well as vendor where the 'store' is being run.
+
+To run multiple clients, type-
+./run_tests 0.0.0.0:50049 10
+
+To run a single client (Async or Sync), type-
+./client 0.0.0.0:50049
