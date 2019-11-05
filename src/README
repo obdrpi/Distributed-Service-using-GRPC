@@ -1,0 +1,16 @@
+The synchronous and asynchronous APIs have been used for communication between client and server, server and the vendors. The code has been wriiten with the help of the given helloworld tutorials. Also, there are two additional clients - client_async.cc (asynchronous), client.cc (Synchronous) which would run a single thread to send a request to the server.
+
+Asynchronous:
+Server- store.cc
+
+Synchronous:
+Client - client.cc
+Server - store_sync.cc
+
+
+
+To run the server, type-
+./server_async 0.0.0.0:50049 10
+
+To run a single client (Async or Sync), type-
+./client 0.0.0.0:50049
