@@ -1,25 +1,5 @@
 # Distributed-Service-using-GRPC
-Skip to content
-Search or jump to…
 
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@obdrpi 
-Learn Git and GitHub without any code!
-Using the Hello World guide, you’ll start a branch, write comments, and open a pull request.
-
-
-1
-00obdrpi/Distributed-Service-using-GRPC
- Code Issues 0 Pull requests 0 Projects 0 Wiki Security Insights Settings
-Distributed-Service-using-GRPC/README
-@obdrpi obdrpi Add files via upload
-88e3da4 43 seconds ago
-40 lines (28 sloc)  2.68 KB
- 
 Individual Project: I have developed 'store.cc', 'cient.cc', 'store_sync.cc' and 'Threadpool.h' files which can be found in the folder. Help was taken from the online tutorials for GRPC understanding!
 
 In this project, we have implemented a simple distributed service in GRPC C++. It can be thought of as an Amazon store where there is a Server which receives requests from different users, querying the prices offered by the different registered vendors. Once the store has responses from all the vendors, it is supposed to collate the (bid, vendor_id) from the vendors and send it back to the requesting client. 
